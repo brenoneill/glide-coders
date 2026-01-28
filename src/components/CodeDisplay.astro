@@ -1,0 +1,135 @@
+---
+import { codeToHtml } from 'shiki';
+
+/**
+ * CodeDisplay component for rendering code snippets in MDX with syntax highlighting
+ * @param language - Programming language for syntax highlighting (default: 'javascript')
+ * @param filename - Optional filename to display in the header
+ * @param showLineNumbers - Whether to show line numbers (default: false) - Note: Currently not implemented
+ */
+interface Props {
+  language?: string;
+  filename?: string;
+  showLineNumbers?: boolean;
+}
+
+const { language = 'javascript', filename, showLineNumbers = false } = Astro.props;
+
+// Get code from children slot
+const slotContent = await Astro.slots.render('default');
+const code = slotContent.replace(/<[^>]*>/g, '').trim();
+
+// Generate syntax-highlighted HTML using Shiki (simple approach without transformers)
+const highlightedCode = await codeToHtml(code.trim(), {
+  lang: language,
+  theme: 'github-dark'
+});
+---
+
+<div class="code-display-wrapper not-prose my-8">
+  <!-- Header -->
+  <div class="code-display-header flex items-center justify-between px-4 py-2 bg-gray-800 dark:bg-gray-900 rounded-t-lg border-b border-gray-700">
+    <div class="flex items-center gap-2">
+      <!-- Traffic lights -->
+      <div class="flex gap-2">
+        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+      </div>
+      
+      {filename && (
+        <span class="ml-3 text-sm text-gray-300 font-mono">{filename}</span>
+      )}
+      
+      {!filename && (
+        <span class="ml-3 text-xs text-gray-400 uppercase font-medium">{language}</span>
+      )}
+    </div>
+    
+    <!-- Copy button -->
+    <button
+      class="copy-btn px-3 py-1 text-xs font-medium text-gray-300 hover:text-white bg-gray-700 hover:bg-gray-600 rounded transition-colors"
+      data-code={code}
+      type="button"
+    >
+      Copy
+    </button>
+  </div>
+  
+  <!-- Code content with Shiki highlighting -->
+  <div class={`code-display-content bg-gray-900 dark:bg-black rounded-b-lg overflow-x-auto ${language === 'text' ? 'text-language' : ''}`}>
+    <div set:html={highlightedCode} class="shiki-wrapper" />
+  </div>
+</div>
+
+<style>
+  .code-display-wrapper {
+    font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  }
+  
+  .code-display-content {
+    max-height: 600px;
+    overflow-y: auto;
+  }
+  
+  .code-display-content :global(pre) {
+    margin: 0 !important;
+    padding: 1rem !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+  }
+  
+  .code-display-content :global(code) {
+    display: block;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    tab-size: 2;
+    counter-reset: line;
+  }
+  
+  /* Ensure proper scrolling */
+  .code-display-content :global(.shiki) {
+    background: transparent !important;
+  }
+  
+  /* Lighter color for plain text language */
+  .code-display-content.text-language :global(.shiki),
+  .code-display-content.text-language :global(.shiki span) {
+    color: #e1e4e8 !important;
+  }
+  
+</style>
+
+<script>
+  /**
+   * Copy button functionality for code snippets
+   * Copies code to clipboard and provides visual feedback
+   */
+  document.addEventListener('DOMContentLoaded', () => {
+    const copyButtons = document.querySelectorAll('.copy-btn');
+    
+    copyButtons.forEach(button => {
+      button.addEventListener('click', async () => {
+        const code = button.getAttribute('data-code');
+        if (!code) return;
+        
+        try {
+          await navigator.clipboard.writeText(code);
+          
+          // Update button text and style
+          const originalText = button.textContent;
+          button.textContent = 'Copied!';
+          button.classList.add('!bg-green-600', '!text-white');
+          
+          // Reset after 2 seconds
+          setTimeout(() => {
+            button.textContent = originalText;
+            button.classList.remove('!bg-green-600', '!text-white');
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy code:', err);
+        }
+      });
+    });
+  });
+</script>

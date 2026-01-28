@@ -1,0 +1,90 @@
+---
+title: "The Exact Moment My Codebase Was Too Big"
+description: "A short account of how a small, reasonable-sounding request — combined with a lack of upfront thinking — quietly turned into 20 minutes of wasted time."
+pubDate: 2026-01-28T00:00:00.000Z
+author: "Brendan O'Neill"
+tags: ["AI", "Development", "Best Practices"]
+draft: false
+---
+
+# The Exact Moment My Codebase Was Too Big
+
+- 121 files  
+- ~19k lines of code  
+- ~23k total lines  
+
+And that’s when things started getting weird.
+
+Links would fire, the URL would delete itself, come back, change routes again, and the UI would jump around like it was haunted.
+
+So naturally, I assumed:  
+**the app is just too big now.**
+
+---
+
+## The Bug That Wasn’t Actually a Bug
+
+I’d just added URL-controlled state for pages, tabs, and views.
+
+That part worked fine.
+
+What *didn’t* work was adding links after that. The app got into a loop, and every attempt to “fix” it with more generated code just repeated the same solution.
+
+When I finally stopped and looked at the code, the issue was obvious:
+
+- I used to manage tabs with app-wide context  
+- I switched to managing them via the URL  
+- both systems were now alive  
+- `useEffect`s were reacting to each other  
+
+Two sources of truth. One loop.
+
+I removed the old context, reordered a couple of effects, and it was fixed in minutes.
+
+---
+
+## The Actual Problem: Scope Changed
+
+The app didn’t break because it was big.
+
+It broke because I **changed the scope**.
+
+I didn’t just refactor — I changed the mental model of how state worked. And once a codebase reaches a certain size, those changes are where complexity explodes.
+
+Old assumptions stick around.  
+Generated code mixes paradigms.  
+Small ordering issues suddenly matter.
+
+That’s where “mysterious” bugs come from.
+
+---
+
+## This Is Why Devs Are Never “Done”
+
+This is also why developers won’t be replaced.
+
+Not because writing code is hard — but because **requirements and scope never stop changing**.
+
+The hard part isn’t implementing features.  
+It’s noticing when the model shifted and cleaning up what no longer makes sense.
+
+Tools are great at extending a system.  
+They’re bad at knowing when the system itself changed.
+
+That part is still on us.
+
+---
+
+## The Takeaway
+
+Size matters — but **scope changes matter more**.
+
+Catch them early and things stay sane.  
+Miss them and you get loops, slop, and “weird” behavior.
+
+Stop generating sooner.  
+Read your code.  
+Delete old ideas.
+
+If you want to manage dense codebases better when using code-gen tools — follow the guidelines laid out in  
+[Stop the Slop – An Internal Guide for Devs](https://stoptheslop.dev/blog/stop-the-slop-an-internal-guide-for-devs)

@@ -1,0 +1,64 @@
+---
+/**
+ * InternalDoc component for wrapping internal documentation
+ * Creates a visually distinct section to indicate internal-only content
+ * @param title - Optional title for the internal section (defaults to "Internal Document")
+ */
+interface Props {
+  title?: string;
+}
+
+const { title = "Internal Document" } = Astro.props;
+---
+
+<div class="not-prose my-8 border-2 border-amber-400 dark:border-amber-600 rounded-lg overflow-hidden bg-gray-50 dark:bg-gray-800">
+  <!-- Header Banner -->
+  <div class="header-gradient px-6 py-2 flex flex-wrap items-center gap-3">
+    <svg class="w-5 h-5 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+    </svg>
+    <h3 class="header-title text-xl font-bold !leading-none min-w-0">{title}</h3>
+    <span class="text-xs uppercase tracking-wide font-semibold text-white/90 bg-white/20 px-3 py-1 rounded-full whitespace-nowrap flex items-center">
+      Internal Doc
+    </span>
+  </div>
+  
+  <!-- Content Area -->
+  <div class="px-6 py-2 bg-gray-50 dark:bg-gray-800 border-t-2 border-amber-200 dark:border-amber-800 prose dark:prose-invert max-w-none">
+    <slot />
+  </div>
+  
+  <!-- Footer Notice -->
+  <div class="footer-notice bg-amber-100 dark:bg-amber-900/20 px-6 py-2 text-sm border-t border-amber-200 dark:border-amber-700 note-label">
+    <span class="font-medium">📋 Note:</span> This is internal documentation for team reference and may contain company-specific information.
+  </div>
+</div>
+
+<style>
+  .header-gradient {
+    background: linear-gradient(to right, #f59e0b, #f97316);
+    padding: 1rem !important;
+  }
+  
+  .header-title {
+    color: #ffffff !important;
+    margin: 0 !important;
+  }
+  
+  .note-label {
+    color: #b45309 !important;
+  }
+  
+  .dark .note-label {
+    color: #fbbf24 !important;
+  }
+  
+  .note-text {
+    color: #374151 !important;
+  }
+  
+  .dark .note-text {
+    color: #9ca3af !important;
+  }
+</style>
+

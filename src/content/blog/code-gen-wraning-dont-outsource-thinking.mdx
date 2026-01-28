@@ -1,0 +1,214 @@
+---
+title: "Code-Gen Warning: Don't Outsource Thinking"
+description: "A short account of how a small, reasonable-sounding request — combined with a lack of upfront thinking — quietly turned into 20 minutes of wasted time."
+pubDate: 2025-12-12T00:00:00.000Z
+author: "Brendan O'Neill"
+tags: ["AI", "Development", "Best Practices"]
+draft: false
+---
+
+import CodeDisplay from '../../components/CodeDisplay.astro';
+
+# Code-Gen Warning: Don't Outsource Thinking
+
+*Stop the Slop* is about embracing code-gen tools — **responsibly**.
+This isn’t anti-AI. It’s anti-'agentic coding' in complex codebases.
+
+This post isn’t a tutorial. it’s a reminder that vague thinking plus AI can burn 20 minutes, or worse, ship over-engineered, subtly broken code that looks clean enough to pass review and quietly rot in the codebase i.e. slop.
+
+
+---
+
+## The Setup
+
+I was building a **universal modal** pattern in a Next.js app using the **pages router**.
+
+All UI state lived in the URL:
+
+* `tab` controlled the dashboard state
+* `modal` controlled whether a modal was open
+* additional params carried modal context
+
+Example:
+
+<CodeDisplay language="text">
+{`?tab=overview&modal=add-user&projectId=abc&orgId=xyz`}
+</CodeDisplay>
+
+Using AI, I had the core functionality working in about **25 minutes**.
+The pattern itself was solid and I've saved a nice bit of time.
+
+Then I needed one last thing.
+
+---
+
+## The Ambiguous Request
+
+The request I gave AI was essentially:
+
+> “Now add a function to close the modal when the user presses close or clicks outside.”
+
+That made perfect sense **in my head**.
+
+But notice what’s missing.
+
+I didn’t say:
+
+* what should happen to the URL
+* which parameters matter
+* which state should be preserved
+
+I hadn’t actually thought that part through yet — I just assumed the tool would “do the right thing”.
+
+That ambiguity is what sent things sideways.
+
+---
+
+## What AI Did With That Ambiguity
+
+Given a vague instruction, AI did the safest, most generic thing it could do:
+attempt to *dynamically clear query parameters*.
+
+It suggested something like this:
+
+<CodeDisplay language="ts">
+{`// ❌ AI-style slop: generic, overengineered, incorrect
+import { useRouter } from 'next/router';
+
+export const useClearModalParams = () => {
+  const router = useRouter();
+
+  const clearParams = () => {
+    const newQuery: Record<string, any> = {};
+
+    Object.keys(router.query).forEach((key) => {
+      newQuery[key] = undefined; // ❌ does NOT remove params in Next.js
+    });
+
+    router.replace(
+      { pathname: router.pathname, query: newQuery },
+      undefined,
+      { shallow: true }
+    );
+  };
+
+  return clearParams;
+};`}
+</CodeDisplay>
+
+This *looks* reasonable.
+It’s abstract.
+It’s reusable.
+It feels like a “proper” solution.
+
+It’s also wrong — both technically and conceptually.
+
+---
+
+## The Real Mistake
+
+The real issue wasn’t the code.
+
+It was that **I hadn’t actually decided what “closing the modal” meant**.
+
+So the AI filled in the blanks with:
+
+* generic behaviour
+* unnecessary abstraction
+* incorrect assumptions about how Next.js treats query params
+
+And because I was already in flow, I didn’t stop to question it.
+
+I prompted again.
+Then again.
+
+I lost about **20 minutes** here.
+
+---
+
+## The Moment I Actually Thought
+
+When I finally stopped and reasoned about it, the requirement was obvious:
+
+* `tab` is the source of truth
+* everything after `tab` only exists to support the modal
+* therefore: closing the modal means **resetting the URL to the tab**
+
+No dynamic cleanup.
+No inference.
+No cleverness.
+
+---
+
+## The Actual Core Functionality
+
+Once framed correctly, the solution collapsed to this:
+
+<CodeDisplay language="ts">
+{`// ✅ Thinking-led: reset URL to the known good state
+import { useRouter } from 'next/router';
+
+export const useCloseModal = () => {
+  const router = useRouter();
+
+  return (tabParam: string) => {
+    router.push(\`\${router.pathname}?tab=\${encodeURIComponent(tabParam)}\`);
+  };
+};`}
+</CodeDisplay>
+
+That’s it.
+
+The problem wasn’t “hard”.
+It was just **undefined**.
+
+---
+
+## Why This Is Easy to Miss
+
+You might think:
+
+> “If you’d just written a better prompt, it would’ve worked.”
+
+That’s true — but it’s also exactly the point.
+
+Code-gen tools make it incredibly easy to skip the part where you:
+
+* clearly define the outcome
+* simplify the state model
+* decide what *must* be preserved vs discarded
+
+Once you’re in flow, prompting feels like progress — even when it isn’t.
+
+It’s like trying to talk someone through the browser inspector: you’re looking at the same screen, but seeing completely different things - your AI assistant is no different.
+
+You stop thinking *before* you ask.
+
+That’s the danger.
+
+---
+
+## The Takeaways
+
+This experience helped shape our internal dev guide, but the lessons are simple:
+
+* **Think through the outcome before you ask**
+* **Ambiguous prompts produce generic solutions**
+* **Two minutes of upfront reasoning can save 20 minutes later**
+* **If more than two prompts don’t go your way, intervene hard**
+* **Always be ready to `git reset --hard`**
+
+AI is best used in **bounded tasks**, not fuzzy intent.
+
+Use it deliberately.
+Define the problem first.
+Then let the tool help.
+
+---
+
+If you're interested, this experience directly informed our internal guide for devs using code-gen responsibly:
+
+[https://stoptheslop.dev/blog/stop-the-slop-an-internal-guide-for-devs](https://stoptheslop.dev/blog/stop-the-slop-an-internal-guide-for-devs)
+
+This isn’t about rejecting AI.
+It’s about not outsourcing your thinking to it.

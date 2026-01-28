@@ -1,0 +1,136 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Analytics from '@vercel/analytics/astro'
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Stop the Slop</title>
+		<script is:inline>
+			// Check for saved theme preference or default to light mode
+			const theme = (() => {
+				if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+					return localStorage.getItem('theme');
+				}
+				if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+					return 'dark';
+				}
+				return 'light';
+			})();
+
+			if (theme === 'dark') {
+				document.documentElement.classList.add('dark');
+			} else {
+				document.documentElement.classList.remove('dark');
+			}
+			
+			window.localStorage.setItem('theme', theme);
+		</script>
+	</head>
+	<body>
+		<!-- Background Pattern -->
+		<div class="fixed inset-0 pointer-events-none z-0 opacity-[.2] dark:opacity-[.2]" aria-hidden="true">
+			<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+				<defs>
+					<pattern id="code-pattern" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse">
+						<!-- Curly braces -->
+						<text x="10" y="20" font-family="monospace" font-size="20" fill="#f472b6" opacity="0.6">{`{}`}</text>
+						<!-- Angle brackets -->
+						<text x="70" y="30" font-family="monospace" font-size="18" fill="#f472b6" opacity="0.5">&lt;/&gt;</text>
+						<!-- Semicolon -->
+						<text x="40" y="50" font-family="monospace" font-size="16" fill="#f472b6" opacity="0.4">;</text>
+						<!-- Square brackets -->
+						<text x="90" y="60" font-family="monospace" font-size="18" fill="#f472b6" opacity="0.5">[]</text>
+						<!-- Function arrow -->
+						<text x="20" y="75" font-family="monospace" font-size="16" fill="#f472b6" opacity="0.4">=&gt;</text>
+						<!-- Parentheses -->
+						<text x="65" y="90" font-family="monospace" font-size="18" fill="#f472b6" opacity="0.5">()</text>
+						<!-- Hash/comment -->
+						<text x="100" y="100" font-family="monospace" font-size="16" fill="#f472b6" opacity="0.4">#</text>
+						<!-- Slash -->
+						<text x="5" y="110" font-family="monospace" font-size="20" fill="#f472b6" opacity="0.3">//</text>
+					</pattern>
+					
+					<!-- Gradient mask that fades towards center -->
+					<linearGradient id="fade-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+						<stop offset="0%" style="stop-color:white;stop-opacity:1" />
+						<stop offset="30%" style="stop-color:white;stop-opacity:0.3" />
+						<stop offset="50%" style="stop-color:white;stop-opacity:0" />
+						<stop offset="70%" style="stop-color:white;stop-opacity:0.3" />
+						<stop offset="100%" style="stop-color:white;stop-opacity:1" />
+					</linearGradient>
+					
+					<mask id="fade-mask">
+						<rect width="100%" height="100%" fill="url(#fade-gradient)"/>
+					</mask>
+				</defs>
+				<rect width="100%" height="100%" fill="url(#code-pattern)" mask="url(#fade-mask)"/>
+			</svg>
+		</div>
+		
+		<!-- White content stripe with blurred edges -->
+		<div class="fixed inset-0 z-5 pointer-events-none pt-12" aria-hidden="true">
+			<div class="h-full mx-auto max-w-5xl bg-white dark:bg-gray-900 relative">
+				<!-- Left blur edge -->
+				<div class="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-transparent to-white dark:to-gray-900"></div>
+				<!-- Right blur edge -->
+				<div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-transparent to-white dark:to-gray-900"></div>
+			</div>
+		</div>
+		
+		<div class="relative z-10">
+			<Header />
+			<slot />
+		</div>
+		<Analytics />
+		<script>
+			// Theme toggle functionality
+			const themeToggle = document.getElementById('theme-toggle');
+			const darkIcon = document.getElementById('theme-toggle-dark-icon');
+			const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+			// Show the appropriate icon based on current theme
+			function updateIcons() {
+				if (document.documentElement.classList.contains('dark')) {
+					darkIcon?.classList.add('hidden');
+					lightIcon?.classList.remove('hidden');
+				} else {
+					darkIcon?.classList.remove('hidden');
+					lightIcon?.classList.add('hidden');
+				}
+			}
+
+			updateIcons();
+
+			themeToggle?.addEventListener('click', () => {
+				document.documentElement.classList.toggle('dark');
+
+				const isDark = document.documentElement.classList.contains('dark');
+				localStorage.setItem('theme', isDark ? 'dark' : 'light');
+				
+				updateIcons();
+			});
+		</script>
+	</body>
+</html>
+
+<style>
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+		background-color: #ffffff;
+	}
+	
+	html.dark,
+	html.dark body {
+		background-color: #0f172a;
+	}
+</style>

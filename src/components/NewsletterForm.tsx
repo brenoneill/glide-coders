@@ -49,7 +49,7 @@ export default function NewsletterForm({
           Join the newsletter
         </HeadingTag>
         <p className="text-gray-600 dark:text-gray-300 mb-6">
-          Get the latest articles and insights delivered directly to your inbox.
+          Get the latest resources and insights delivered directly to your inbox.
         </p>
         
         {status === 'success' ? (

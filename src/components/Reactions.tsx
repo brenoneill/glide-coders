@@ -6,8 +6,8 @@ interface ReactionsProps {
 }
 
 /**
- * Reactions component for collecting emoji feedback on blog posts
- * @param slug - The blog post slug for tracking reactions per post
+ * Reactions component for collecting emoji feedback on resources
+ * @param slug - The resource slug for tracking reactions per resource
  * 
  * Features:
  * - Allows users to select heart, thumbs-up, or thumbs-down emoji
@@ -47,7 +47,7 @@ export default function Reactions({ slug }: ReactionsProps) {
   return (
     <div className="mb-8">
       <h3 className="text-lg font-serif font-medium text-gray-800 dark:text-gray-100 mb-4">
-        How did you find this article?
+        How did you find this resource?
       </h3>
       
       <div>

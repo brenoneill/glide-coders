@@ -1,26 +1,26 @@
-# Stop the Slop
+# Glide Coders
 
-A blog about using AI code generation tools effectively—embracing their power while maintaining quality and intentionality in our work.
+Standalone tips from a professional developer to help vibecoders minimize dev friction.
 
 ## About
 
-Hi, I'm Brendan O'Neill. This blog is about using AI code generation tools effectively—embracing their power while maintaining quality and intentionality in our work.
+Hi, I'm Brendan O'Neill. Glide Coders provides standalone tips from a professional developer to help vibecoders minimize dev friction. Each resource is self-contained and actionable, designed to eliminate friction when starting new projects so you can focus on building instead of configuring.
 
-## What is "Slop"?
+## What is Vibecoding?
 
-"Slop" is low-quality, thoughtless code that gets generated without proper review, testing, or understanding. It's the careless output that happens when developers treat AI tools as magic buttons instead of powerful assistants. Slop clutters codebases, introduces bugs, and creates technical debt.
+Vibecoding is about finding your flow state—that sweet spot where you're fully engaged, productive, and in the zone. It's coding with intention, clarity, and momentum. But too often, starting a new project means wrestling with setup, configuration, and boilerplate instead of diving into the actual work.
 
 ## The Mission
 
-AI code generation tools are transformative and incredibly useful. The goal isn't to avoid them—it's to use them well. This blog explores strategies for leveraging AI coding assistants while maintaining code quality through proper prompting, thorough testing, meaningful code review, and developer intentionality.
+We believe the best code gets written when developers can glide smoothly from idea to implementation. Glide Coders provides standalone tips and resources from a professional developer—each one self-contained and actionable—to help vibecoders eliminate friction at the start of every project, from project scaffolding and configuration to best practices and workflow optimization.
 
 ## What You'll Find Here
 
-Practical guides on AI-powered development workflows, effective prompting strategies, testing approaches for AI-generated code, and techniques for reviewing and refining AI output. Everything here is about getting the best results from AI tools without sacrificing quality or understanding.
+Standalone tips and practical resources from a professional developer: setup guides, configuration templates, workflow tips, and strategies for maintaining momentum. Each resource is designed to be consumed independently and help you get from zero to productive as quickly as possible, so you can stay in the flow.
 
 ## Tech Stack
 
-This blog is built with:
+This site is built with:
 
 - [Astro](https://astro.build/) - Static site framework
 - [React](https://reactjs.org/) - For interactive components
@@ -29,9 +29,9 @@ This blog is built with:
 
 ## Get In Touch
 
-Have thoughts on AI-assisted development? Want to share your own strategies for stopping the slop? I'd love to hear from you.
+Have tips for eliminating friction? Want to share your own vibecoding strategies? I'd love to hear from you.
 
-📧 [hello@brendan.com](mailto:hello@brendan.com)
+📧 [bren@nodaysoff.ie](mailto:bren@nodaysoff.ie)
 
 ## License
 

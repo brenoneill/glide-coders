@@ -12,11 +12,11 @@ Vibecoding is about finding your flow state—that sweet spot where you're fully
 
 ## The Mission
 
-We believe the best code gets written when developers can glide smoothly from idea to implementation. Glide Coders provides standalone tips and resources from a professional developer—each one self-contained and actionable—to help vibecoders eliminate friction at the start of every project, from project scaffolding and configuration to best practices and workflow optimization.
+We believe the best code gets written when developers can glide smoothly from idea to implementation. Good foundations with solid design patterns make vibecoding easier and enable longer, more effective work. Glide Coders provides standalone tips and resources from a professional developer—each one self-contained and actionable—to help vibecoders build these foundations, eliminate friction at the start of every project, and maintain momentum through proper project scaffolding, configuration, design patterns, and workflow optimization.
 
 ## What You'll Find Here
 
-Standalone tips and practical resources from a professional developer: setup guides, configuration templates, workflow tips, and strategies for maintaining momentum. Each resource is designed to be consumed independently and help you get from zero to productive as quickly as possible, so you can stay in the flow.
+Standalone tips and practical resources from a professional developer: setup guides, configuration templates, design patterns, workflow tips, and strategies for building solid foundations. Each resource is designed to be consumed independently and help you establish foundations that make vibecoding easier, enabling longer, more effective work sessions and helping you stay in the flow.
 
 ## Tech Stack
 

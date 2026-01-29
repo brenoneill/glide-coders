@@ -1,5 +1,5 @@
 ---
-title: "Git Will Change Your Life And You Only Need Two Commands"
+title: "Git Will Change Your Coding Life And You Only Need Two Commands"
 description: "A practical guide to using git for code generation workflows - you only need to know how to commit and reset code, it's that simple."
 pubDate: 2026-01-29T00:00:00.000Z
 author: "Brendan O'Neill"
@@ -12,18 +12,16 @@ import Callout from '../../components/Callout.astro';
 import Technicallity from '../../components/Technicallity.astro';
 import Table from '../../components/Table.astro';
 
-If you aren't using git, stop developing and invest an hour in learning ittoday. I guarantee you'll see a full ROI within a week.
+If you aren't using git, stop developing and invest an hour in learning it today. I guarantee you'll see a full ROI within a week.
 
-Git might sound complicated, but the thing is, to 'glide code' you only really need to know how to do two commands: commit and reset your code.
+Git might sound complicated, but the thing is, to 'glide code' you only really **need** to know two commands: **commit** and **reset** your code.
 
 <Technicallity>
 *Well, technically it's three commands, but you only need to learn how to do two things.
 </Technicallity>
 
 ## 1. Committing Code
-'Committing' code essentially saves your codebase at a certain point in time. So when you're happy with your code, you create a commit and then if you want to get back to that code, all you have to do is enter:
-
-You can commit code with two really simple commands in the terminal:
+'Committing' code essentially saves your codebase at a certain point in time. So when you're happy with your code, you create a commit with two really simple commands:
 
 <CodeDisplay language="bash">
 {`git add .
@@ -31,7 +29,7 @@ git commit -m "Message describing the commit"`}
 </CodeDisplay>
 
 ## 2. Resetting Code
-'Resetting' your code instantly drops all the code that you've written or generated but **haven't yet committed**. In the long run, this command is going to save you hours.
+'Resetting' your code instantly drops all the code that you've written or *generated* but **haven't yet committed**. In the long run, this command is going to save you **hours** of your time.
 
 <CodeDisplay language="bash">
 {`git reset --hard`}
@@ -52,7 +50,7 @@ Here's a real-world example - you're building a TODO list app and you want users
 
 So think through that - you want to:
 1. Add a 'High Priority' Button
-2. Update the item to show if it is 'High Priority' when the user clicks the button
+2. Update the item to show it is 'High Priority' when the user clicks the button
 3. Move 'High Priority' items to a new list at the top of the screen
 
 <Callout type="prompt">
@@ -105,7 +103,7 @@ Open a new agent. Copy and paste the file for context and then prompt.
 When a user sets an item to high priority, make the item slide out of the 'normal priority' list from left to right and then slide in to the 'high priority' list from left to right.
 </Callout>
 
-Perfect. This has a much better chance of coming out as you planned. You experimented, got a better understnading of what exactly you want and it was super simple to get back into a position to give a more detailed prompt without having to regenrate the things you were happy with; the button, the feedback, and the list!
+Perfect. This has a much better chance of coming out as you planned. You experimented, got a better understnading of what exactly you want and it was super simple to get back into a position to give a more detailed prompt without having to regenrate the things you were already happy with; the button, the feedback, and the list!
 
 So finally, commit your finished feature.
 
@@ -114,7 +112,7 @@ So finally, commit your finished feature.
 git commit -m "Add transition for high priority item"`}
 </CodeDisplay>
 
-This might slow you down a little bit at first but overall you will save A LOT of time, especially when you start running into errors!
+This might slow you down a little bit at first but overall you will save **A LOT** of time, especially when you start running into errors!
 
 <Callout type="takeaway">
 Get into the habit of committing code **early** and **often**.

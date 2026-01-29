@@ -8,8 +8,7 @@ draft: false
 ---
 
 import CodeDisplay from '../../components/CodeDisplay.astro';
-import Prompt from '../../components/Prompt.astro';
-import Takeaway from '../../components/Takeaway.astro';
+import Callout from '../../components/Callout.astro';
 import Technicallity from '../../components/Technicallity.astro';
 
 If you aren't using git, stop developing and invest an hour in learning ittoday. I guarantee you'll see a full ROI within a week.
@@ -55,9 +54,9 @@ So think through that - you want to:
 2. Update the item to show if it is 'High Priority' when the user clicks the button
 3. Move 'High Priority' items to a new list at the top of the screen
 
-<Prompt>
+<Callout type="prompt">
 Add a button that is a flag icon on the right hand side of the TODO item so the user can set the item as a priority of "HIGH"
-</Prompt>
+</Callout>
 
 *Adds button - you're happy*
 
@@ -66,9 +65,9 @@ Add a button that is a flag icon on the right hand side of the TODO item so the 
 git commit -m "Add High Priority Button"`}
 </CodeDisplay>
 
-<Prompt>
+<Callout type="prompt">
 Create a separate list shown at the top of the screen for 'High Priority TODO items'
-</Prompt>
+</Callout>
 
 *Adds list - you're happy*
 
@@ -79,15 +78,15 @@ git commit -m "Add High Priority List at the top of the screen"`}
 
 Looks great when it's static and you know you're happy. But now you want to add a nice transition.
 
-<Prompt>
+<Callout type="prompt">
 When a user sets an item to high priority, have a nice transition that moves it from the normal list to the 'High Priority' list.
-</Prompt>
+</Callout>
 
 You're not happy, it's a bit jumpy, but you think about it and you realise how you want it to work.
 
-<Prompt>
+<Callout type="prompt">
 No, that's not really working, it's a bit jumpy. Make the item slide out of the 'normal priority' list from left to right and then slide in to the 'high priority' list from left to right.
-</Prompt>
+</Callout>
 
 It changes some code, but follows a pattern from the previous prompt but it leaves you with something that is a weird mix of the original jumpy transition and the newly requested sliding one.
 
@@ -101,9 +100,9 @@ This will reset your code back to your last commit. Now we've gotten rid of the 
 
 Open a new agent. Copy and paste the file for context and then prompt.
 
-<Prompt>
+<Callout type="prompt">
 When a user sets an item to high priority, make the item slide out of the 'normal priority' list from left to right and then slide in to the 'high priority' list from left to right.
-</Prompt>
+</Callout>
 
 Perfect. This has a much better chance of coming out as you planned. You experimented, got a better understnading of what exactly you want and it was super simple to get back into a position to give a more detailed prompt without having to regenrate the things you were happy with; the button, the feedback, and the list!
 
@@ -116,9 +115,9 @@ git commit -m "Add transition for high priority item"`}
 
 This might slow you down a little bit at first but overall you will save A LOT of time. Especially when you start running into errors!
 
-<Takeaway>
+<Callout type="takeaway">
 Get into the habit of committing code **early** and **often**.
-</Takeaway>
+</Callout>
 
 As you get further into your code it becomes more and more important as the codebase gets bigger and the generated code gets more unstable and unreliable.
 

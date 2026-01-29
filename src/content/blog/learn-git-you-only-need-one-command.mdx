@@ -12,7 +12,7 @@ import Callout from '../../components/Callout.astro';
 import Technicallity from '../../components/Technicallity.astro';
 import Table from '../../components/Table.astro';
 
-If you aren't using git, stop developing and invest an hour in learning it today. I guarantee you'll see a full ROI within a week.
+If you aren't using git, stop developing and invest 30 minutes in learning the basics today. I guarantee you'll see a full ROI within a few days.
 
 Git might sound complicated, but the thing is, to 'glide code' you only really **need** to know two commands: **commit** and **reset** your code.
 
@@ -24,12 +24,12 @@ Git might sound complicated, but the thing is, to 'glide code' you only really *
 'Committing' code essentially saves your codebase at a certain point in time. So when you're happy with your code, you create a commit with two really simple commands:
 
 <CodeDisplay language="bash">
-{`git add .
+{`git add . // Adds all changes to the 'staging' area
 git commit -m "Message describing the commit"`}
 </CodeDisplay>
 
 ## 2. Resetting Code
-'Resetting' your code instantly drops all the code that you've written or *generated* but **haven't yet committed**. In the long run, this command is going to save you **hours** of your time.
+'Resetting' your code instantly drops all the code that you've written or *generated* but **haven't yet committed**. In the long run, this command is going to save you countless **hours** of your time.
 
 <CodeDisplay language="bash">
 {`git reset --hard`}
@@ -37,14 +37,14 @@ git commit -m "Message describing the commit"`}
 
 You might not believe me just yet, but you soon will. Here's why:
 
-- Agents are prone to getting into error loops - when this happens, it makes it difficult to get back because as more wonky code is generated, it becomes part of the prompt. A lot of the time, from these loops you'll have a much better idea of what's going on, so resetting and giving a more detailed prompt will do the trick much faster than trying to prompt your way backwards
-- You can experiment risk-free. You think a transition will look good, you prompt to add a transition, it's not great, you test it out a bit more, you've updated 3 files now trying to get this working and you finally get it working but it's not as good as you thought - `git reset --hard`, no need to backtrack
+- Agents are prone to getting into error loops - when this happens, it makes it difficult to get back because as more wonky code is generated, it becomes part of the prompt. A lot of the time, from observing these loops you get a much better idea of what's going on. Resetting and giving a more detailed prompt will do the trick much faster than trying to prompt your way backwards
+- You can experiment risk-free. You think a transition will look good, you prompt to add a transition, it's not great, you test it out a bit more, you've updated 3 files now trying to get this working and you finally get it working but it's not as good as you thought - `git reset --hard`, no need to backtrack. Minimal time wasted.
 
 ## Using Git
 
-As you use these simple steps in your development workflow, the use cases will become very clear very quickly.
+As you use these simple steps in your development workflow, the use cases will become very clear, very quickly.
 
-Here's a real-world example - you're building a TODO list app and you want users to be able to:
+Here's a hypothetical example - you're building a TODO list app and you want users to be able to:
 
 'Set an item as high priority'.
 

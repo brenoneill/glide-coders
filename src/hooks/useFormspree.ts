@@ -45,15 +45,28 @@ export function useFormspree(options: UseFormspreeOptions = {}): UseFormspreeRet
     setMessage('');
 
     try {
-      // Get Formspree form ID from environment variable with optional fallback
-      let formspreeId = (import.meta.env as any)[formIdEnvKey];
+      let formspreeId: string | undefined;
+      
+      if (formIdEnvKey === 'PUBLIC_FORMSPREE_FORM_ID') {
+        formspreeId = import.meta.env.PUBLIC_FORMSPREE_FORM_ID;
+      } else if (formIdEnvKey === 'PUBLIC_FORMSPREE_REACTIONS_FORM_ID') {
+        formspreeId = import.meta.env.PUBLIC_FORMSPREE_REACTIONS_FORM_ID;
+      } else {
+        formspreeId = (import.meta.env as any)[formIdEnvKey];
+      }
       
       if (!formspreeId && fallbackFormIdEnvKey) {
-        formspreeId = (import.meta.env as any)[fallbackFormIdEnvKey];
+        if (fallbackFormIdEnvKey === 'PUBLIC_FORMSPREE_FORM_ID') {
+          formspreeId = import.meta.env.PUBLIC_FORMSPREE_FORM_ID;
+        } else if (fallbackFormIdEnvKey === 'PUBLIC_FORMSPREE_REACTIONS_FORM_ID') {
+          formspreeId = import.meta.env.PUBLIC_FORMSPREE_REACTIONS_FORM_ID;
+        } else {
+          formspreeId = (import.meta.env as any)[fallbackFormIdEnvKey];
+        }
       }
       
       if (!formspreeId) {
-        throw new Error(`Formspree form ID not configured (${formIdEnvKey})`);
+        throw new Error(`Formspree form ID not configured (${formIdEnvKey}${fallbackFormIdEnvKey ? ` or ${fallbackFormIdEnvKey}` : ''})`);
       }
 
       const response = await fetch(`https://formspree.io/f/${formspreeId}`, {

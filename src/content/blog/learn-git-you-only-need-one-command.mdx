@@ -1,7 +1,7 @@
 ---
 title: "Learn Git: You Only Need One Command"
 description: "A practical guide to using git for code generation workflows - you only need to know how to commit code."
-pubDate: 2025-01-15T00:00:00.000Z
+pubDate: 2026-01-29T00:00:00.000Z
 author: "Brendan O'Neill"
 tags: ["Git", "Development", "Best Practices"]
 draft: false
@@ -83,15 +83,17 @@ You're not happy, it's a bit jumpy, but you think about it and you realise how y
 No, that's not really working, it's a bit jumpy. Make the item slide out of the 'normal priority' list from left to right and then slide in to the 'high priority' list from left to right.
 </Prompt>
 
-Now it kind of leaves you with something that is a weird mix of the jumpy transition it generated and the newly requested sliding transition. This is common with code-generation - when it has added the code, it picks up on the extra code and it's still being considered in the newly created code.
+It changes some code, but follows a pattern from the previous prompt but it leaves you with something that is a weird mix of the original jumpy transition and the newly requested sliding one.
 
-So, come here git! Type:
+So...
 
 <CodeDisplay language="bash">
 {`git reset --hard`}
 </CodeDisplay>
 
-This will reset your code back to your last commit. So, we've gotten rid of the code that has spiralled and gone a bit wonky and we're back to our nice clean code that we're happy with.
+This will reset your code back to your last commit. Now we've gotten rid of the code that has spiralled and gone a bit wonky and we're back to our nice clean code that we're happy with.
+
+Open a new agent. Copy and paste the file for context and then prompt.
 
 <Prompt>
 When a user sets an item to high priority, make the item slide out of the 'normal priority' list from left to right and then slide in to the 'high priority' list from left to right.
@@ -99,18 +101,16 @@ When a user sets an item to high priority, make the item slide out of the 'norma
 
 Perfect. This has a much better chance of coming out as you like. You experimented a little bit and it helped you get a clear vision of what you want so it was super simple to revert back to your clean code and you were able to much more easily get what you want.
 
-So now, last thing:
+Last thing:
 
 <CodeDisplay language="bash">
 {`git add .
 git commit -m "Add transition for high priority item"`}
 </CodeDisplay>
 
-Now you can merge it to your 'main' branch knowing that you have a feature working exactly as you want.
+This might slow you down a little bit at first but overall you will save A LOT of time adn you will start thinking through developing in a more iterative manner which too, will further reduce friction. (I'll touch on this is a later article.)
 
-This might slow you down a little bit to start but overall you will save A LOT of time.
-
-Get into the habit of committing code early and often.
+Get into the habit of committing code *early* and *often*.
 
 As you get further into your code it becomes more and more important as the codebase gets bigger and the generated code gets more unstable and unreliable.
 

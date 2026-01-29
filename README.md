@@ -6,11 +6,11 @@ Standalone tips from a professional developer to help you practice glidecoding�
 
 Glide Coding provides standalone tips from a professional developer to help you practice **glidecoding**—applying simple but effective coding techniques to minimize friction when coding with AI assistants.
 
-## What is Glidecoding?
+## What is Glide Coding?
 
-**Glidecoding:** The practice of applying *simple but effective* coding techniques to minimize friction when coding with AI assistants.
+**Glide Coding:** The practice of applying *simple but effective* coding techniques to minimize friction when coding with AI assistants.
 
-Glidecoding is about finding your flow state when working with AI coding assistants—that sweet spot where you're fully engaged, productive, and in the zone. It's coding with intention, clarity, and momentum. But too often, working with AI assistants means wrestling with prompts, context management, and code quality instead of diving into the actual work. Good foundations with solid design patterns make glidecoding easier and enable longer, more effective work sessions.
+Glide Coding is about finding your flow state when working with AI coding assistants—that sweet spot where you're fully engaged, productive, and in the zone. It's coding with intention, clarity, and momentum. But too often, working with AI assistants means wrestling with prompts, context management, and code quality instead of diving into the actual work. Good foundations with solid design patterns make glidecoding easier and enable longer, more effective work sessions.
 
 ## The Mission
 

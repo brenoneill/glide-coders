@@ -1,0 +1,57 @@
+---
+interface Props {
+  number?: number;
+}
+
+const { number } = Astro.props;
+
+const slotContent = await Astro.slots.render('default');
+---
+
+<div class="technicallity-wrapper not-prose my-2">
+  <div class="technicallity-content pl-2">
+    <div class="technicallity-text text-xs text-gray-500 dark:text-gray-500 leading-relaxed italic">
+      {number && <span class="font-normal text-gray-500 dark:text-gray-500 mr-1">{number}.</span>}
+      <slot />
+    </div>
+  </div>
+</div>
+
+<style>
+  .technicallity-wrapper {
+    font-size: 0.75rem;
+  }
+  
+  .technicallity-content :global(p) {
+    margin: 0;
+    display: inline;
+  }
+  
+  .technicallity-content :global(p + p) {
+    margin-top: 0.25rem;
+    display: block;
+  }
+  
+  .technicallity-content :global(strong) {
+    color: #6b7280;
+    font-weight: 500;
+  }
+  
+  .dark .technicallity-content :global(strong) {
+    color: #6b7280;
+  }
+  
+  .technicallity-content :global(code) {
+    background-color: rgba(107, 114, 128, 0.08);
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.125rem;
+    font-size: 0.6875rem;
+    color: #6b7280;
+    font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  }
+  
+  .dark .technicallity-content :global(code) {
+    background-color: rgba(107, 114, 128, 0.15);
+    color: #6b7280;
+  }
+</style>

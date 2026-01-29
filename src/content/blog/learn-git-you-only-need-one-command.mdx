@@ -1,5 +1,5 @@
 ---
-title: "Learn Git: You Only Need One Command"
+title: "Git: You Only Need Two Commands"
 description: "A practical guide to using git for code generation workflows - you only need to know how to commit code."
 pubDate: 2026-01-29T00:00:00.000Z
 author: "Brendan O'Neill"
@@ -10,15 +10,20 @@ draft: false
 import CodeDisplay from '../../components/CodeDisplay.astro';
 import Prompt from '../../components/Prompt.astro';
 import Takeaway from '../../components/Takeaway.astro';
+import Technicallity from '../../components/Technicallity.astro';
 
-If you aren't using git, stop developing and invest an hour today. I guarantee you'll see a full ROI within a week.
+If you aren't using git, stop developing and invest an hour in learning ittoday. I guarantee you'll see a full ROI within a week.
 
-Git might sound complicated, but the thing is, to 'glide code' you only really need to know how to do two things: commit and reset your code.
+Git might sound complicated, but the thing is, to 'glide code' you only really need to know how to do two commands: commit and reset your code.
+
+<Technicallity>
+*Well, technically it's three commands, but you only need to learn how to do two things.
+</Technicallity>
 
 ## 1. Committing Code
-Committing code essentially saves your codebase at a certain point in time. So when you're happy with your code, you create a commit and then if you want to get back to that code, all you have to do is enter:
+'Committing' code essentially saves your codebase at a certain point in time. So when you're happy with your code, you create a commit and then if you want to get back to that code, all you have to do is enter:
 
-You can commit code with 2 really simple commands in the terminal:
+You can commit code with two really simple commands in the terminal:
 
 <CodeDisplay language="bash">
 {`git add .
@@ -26,20 +31,20 @@ git commit -m "Message describing the commit"`}
 </CodeDisplay>
 
 ## 2. Resetting Code
-Resetting your code instantly drops all the code that you've written or generated but haven't yet committed. This command is going to be your best friend.
+'Resetting' your code instantly drops all the code that you've written or generated but **haven't yet committed**. In the long run, this command is going to save you hours.
 
 <CodeDisplay language="bash">
 {`git reset --hard`}
 </CodeDisplay>
 
-You might not believe me just yet, but you will soon. Here's why:
+You might not believe me just yet, but you soon will. Here's why:
 
 - Agents are prone to getting into error loops - when this happens, it makes it difficult to get back because as more wonky code is generated, it becomes part of the prompt. A lot of the time, from these loops you'll have a much better idea of what's going on, so resetting and giving a more detailed prompt will do the trick much faster than trying to prompt your way backwards
 - You can experiment risk-free. You think a transition will look good, you prompt to add a transition, it's not great, you test it out a bit more, you've updated 3 files now trying to get this working and you finally get it working but it's not as good as you thought - `git reset --hard`, no need to backtrack
 
 ## Using Git
 
-As you use git in your development workflow, the use cases will become very clear very quickly. Another benefit is that this process also helps you think through developing a feature in chunks of work. You should think through these chunks and make commits for each.
+As you use these simple steps in your development workflow, the use cases will become very clear very quickly.
 
 Here's a real-world example - you're building a TODO list app and you want users to be able to:
 
@@ -47,8 +52,8 @@ Here's a real-world example - you're building a TODO list app and you want users
 
 So think through that - you want to:
 1. Add a 'High Priority' Button
-2. Update the item to show if it is 'High Priority'
-3. Move 'High Priority' items to the top of the list
+2. Update the item to show if it is 'High Priority' when the user clicks the button
+3. Move 'High Priority' items to a new list at the top of the screen
 
 <Prompt>
 Add a button that is a flag icon on the right hand side of the TODO item so the user can set the item as a priority of "HIGH"
@@ -100,16 +105,16 @@ Open a new agent. Copy and paste the file for context and then prompt.
 When a user sets an item to high priority, make the item slide out of the 'normal priority' list from left to right and then slide in to the 'high priority' list from left to right.
 </Prompt>
 
-Perfect. This has a much better chance of coming out as you like. You experimented a little bit and it helped you get a clear vision of what you want so it was super simple to revert back to your clean code and you were able to much more easily get what you want.
+Perfect. This has a much better chance of coming out as you planned. You experimented, got a better understnading of what exactly you want and it was super simple to get back into a position to give a more detailed prompt without having to regenrate the things you were happy with; the button, the feedback, and the list!
 
-Last thing:
+So finally, commit your finished feature.
 
 <CodeDisplay language="bash">
 {`git add .
 git commit -m "Add transition for high priority item"`}
 </CodeDisplay>
 
-This might slow you down a little bit at first but overall you will save A LOT of time adn you will start thinking through developing in a more iterative manner which too, will further reduce friction. (I'll touch on this is a later article.)
+This might slow you down a little bit at first but overall you will save A LOT of time. Especially when you start running into errors!
 
 <Takeaway>
 Get into the habit of committing code **early** and **often**.
@@ -117,4 +122,4 @@ Get into the habit of committing code **early** and **often**.
 
 As you get further into your code it becomes more and more important as the codebase gets bigger and the generated code gets more unstable and unreliable.
 
-When you've got that down, you can take a look at branches, which really aren't that much more complicated!
+When you've got that down, you can take a look at branches, which really aren't that much more complicated, which also, I'll touch on in a later article.

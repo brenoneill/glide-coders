@@ -17,7 +17,39 @@ const { language = 'javascript', filename, showLineNumbers = false } = Astro.pro
 
 // Get code from children slot
 const slotContent = await Astro.slots.render('default');
-const code = slotContent.replace(/<[^>]*>/g, '').trim();
+let code = slotContent.replace(/<[^>]*>/g, '').trim();
+
+// Decode HTML entities (like &quot; to ")
+function decodeHtmlEntities(text: string): string {
+  const entityMap: Record<string, string> = {
+    '&quot;': '"',
+    '&apos;': "'",
+    '&amp;': '&',
+    '&lt;': '<',
+    '&gt;': '>',
+    '&#39;': "'",
+    '&#x27;': "'",
+    '&#x2F;': '/',
+  };
+  
+  // Handle named entities
+  let decoded = text.replace(/&[#\w]+;/g, (entity) => {
+    return entityMap[entity] || entity;
+  });
+  
+  // Handle numeric entities (&#39; or &#x27;)
+  decoded = decoded.replace(/&#(\d+);/g, (_, num) => {
+    return String.fromCharCode(parseInt(num, 10));
+  });
+  
+  decoded = decoded.replace(/&#x([0-9a-fA-F]+);/g, (_, hex) => {
+    return String.fromCharCode(parseInt(hex, 16));
+  });
+  
+  return decoded;
+}
+
+code = decodeHtmlEntities(code);
 
 // Generate syntax-highlighted HTML using Shiki (simple approach without transformers)
 const highlightedCode = await codeToHtml(code.trim(), {

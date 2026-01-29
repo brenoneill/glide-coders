@@ -1,0 +1,121 @@
+---
+title: "Learn Git: You Only Need One Command"
+description: "A practical guide to using git for code generation workflows - you only need to know how to commit code."
+pubDate: 2025-01-15T00:00:00.000Z
+author: "Brendan O'Neill"
+tags: ["Git", "Development", "Best Practices"]
+draft: false
+---
+
+import CodeDisplay from '../../components/CodeDisplay.astro';
+import Prompt from '../../components/Prompt.astro';
+
+If you aren't using git, stop developing and invest an hour today. I guarantee you'll see a full ROI within a week.
+
+If you've heard of git, it might sound complicated, but the thing is, to 'glide code' you only really need to know how to do one thing: commit code.
+
+If you can commit code, you will instantly reduce a whole lot of friction when you're developing a new product.
+
+You can commit code with 2 really simple commands in the terminal:
+
+<CodeDisplay language="bash">
+{`git add .
+git commit -m "Message describing the commit"`}
+</CodeDisplay>
+
+Committing code essentially saves your codebase at a certain point in time. So when you're happy with your code, you create a commit and then if you want to get back to that code, all you have to do is enter:
+
+<CodeDisplay language="bash">
+{`git reset --hard`}
+</CodeDisplay>
+
+This instantly drops all the code that you've generated but haven't yet committed.
+
+Honestly, this command is going to be your best friend. So I'm going to repeat it.
+
+<CodeDisplay language="bash">
+{`git reset --hard`}
+</CodeDisplay>
+
+You might not believe me just yet, but you will soon. Here's why:
+
+- Agents are prone to getting into error loops - when this happens, it makes it difficult to get back because as more wonky code is generated, it becomes part of the prompt. A lot of the time, from these loops you'll have a much better idea of what's going on, so resetting and giving a more detailed prompt will do the trick much faster than trying to prompt your way backwards
+- You can experiment risk-free. You think a transition will look good, you prompt to add a transition, it's not great, you test it out a bit more, you've updated 3 files now trying to get this working and you finally get it working but it's not as good as you thought - `git reset --hard`, no need to backtrack
+
+As you use it, the use cases will become very clear very quickly. It also helps you think through developing a feature in chunks of work. You should think through these chunks and make commits for each.
+
+Here's a real-world example - you're building a TODO list app and you want users to be able to:
+
+'Set an item as high priority'.
+
+So think through that - you want to:
+1. Add a 'High Priority' Button
+2. Update the item to show if it is 'High Priority'
+3. Move 'High Priority' items to the top of the list
+
+<Prompt>
+Add a button that is a flag icon on the right hand side of the TODO item so the user can set the item as a priority of "HIGH"
+</Prompt>
+
+*Adds button - you're happy*
+
+<CodeDisplay language="bash">
+{`git add .
+git commit -m "Add High Priority Button"`}
+</CodeDisplay>
+
+<Prompt>
+Create a separate list shown at the top of the screen for 'High Priority TODO items'
+</Prompt>
+
+*Adds list - you're happy*
+
+<CodeDisplay language="bash">
+{`git add .
+git commit -m "Add High Priority List at the top of the screen"`}
+</CodeDisplay>
+
+Looks great when it's static and you know you're happy. But now you want to add a nice transition.
+
+<Prompt>
+When a user sets an item to high priority, have a nice transition that moves it from the normal list to the 'High Priority' list.
+</Prompt>
+
+You're not happy, it's a bit jumpy, but you think about it and you realise how you want it to work.
+
+<Prompt>
+No, that's not really working, it's a bit jumpy. Make the item slide out of the 'normal priority' list from left to right and then slide in to the 'high priority' list from left to right.
+</Prompt>
+
+Now it kind of leaves you with something that is a weird mix of the jumpy transition it generated and the newly requested sliding transition. This is common with code-generation - when it has added the code, it picks up on the extra code and it's still being considered in the newly created code.
+
+So, come here git! Type:
+
+<CodeDisplay language="bash">
+{`git reset --hard`}
+</CodeDisplay>
+
+This will reset your code back to your last commit. So, we've gotten rid of the code that has spiralled and gone a bit wonky and we're back to our nice clean code that we're happy with.
+
+<Prompt>
+When a user sets an item to high priority, make the item slide out of the 'normal priority' list from left to right and then slide in to the 'high priority' list from left to right.
+</Prompt>
+
+Perfect. This has a much better chance of coming out as you like. You experimented a little bit and it helped you get a clear vision of what you want so it was super simple to revert back to your clean code and you were able to much more easily get what you want.
+
+So now, last thing:
+
+<CodeDisplay language="bash">
+{`git add .
+git commit -m "Add transition for high priority item"`}
+</CodeDisplay>
+
+Now you can merge it to your 'main' branch knowing that you have a feature working exactly as you want.
+
+This might slow you down a little bit to start but overall you will save A LOT of time.
+
+Get into the habit of committing code early and often.
+
+As you get further into your code it becomes more and more important as the codebase gets bigger and the generated code gets more unstable and unreliable.
+
+When you've got that down, you can take a look at branches, which really aren't that much more complicated!

@@ -57,7 +57,7 @@ const highlightedCode = await codeToHtml(code.trim(), {
   </div>
   
   <!-- Code content with Shiki highlighting -->
-  <div class={`code-display-content bg-gray-900 dark:bg-black rounded-b-lg overflow-x-auto ${language === 'text' ? 'text-language' : ''}`}>
+  <div class={`code-display-content bg-gray-900 dark:bg-black rounded-b-lg overflow-x-auto ${language === 'text' ? 'text-language' : ''} ${['bash', 'sh', 'shell', 'zsh', 'powershell'].includes(language) ? 'terminal-language' : ''}`}>
     <div set:html={highlightedCode} class="shiki-wrapper" />
   </div>
 </div>
@@ -96,6 +96,15 @@ const highlightedCode = await codeToHtml(code.trim(), {
   .code-display-content.text-language :global(.shiki),
   .code-display-content.text-language :global(.shiki span) {
     color: #e1e4e8 !important;
+  }
+  
+  /* Terminal-specific styling for better readability */
+  .code-display-content.terminal-language {
+    background-color: #1a1a1a;
+  }
+  
+  .dark .code-display-content.terminal-language {
+    background-color: #0a0a0a;
   }
   
 </style>

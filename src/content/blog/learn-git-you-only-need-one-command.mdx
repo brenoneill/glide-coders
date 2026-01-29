@@ -12,9 +12,10 @@ import Prompt from '../../components/Prompt.astro';
 
 If you aren't using git, stop developing and invest an hour today. I guarantee you'll see a full ROI within a week.
 
-If you've heard of git, it might sound complicated, but the thing is, to 'glide code' you only really need to know how to do one thing: commit code.
+Git might sound complicated, but the thing is, to 'glide code' you only really need to know how to do two things: commit and reset your code.
 
-If you can commit code, you will instantly reduce a whole lot of friction when you're developing a new product.
+## 1. Committing Code
+Committing code essentially saves your codebase at a certain point in time. So when you're happy with your code, you create a commit and then if you want to get back to that code, all you have to do is enter:
 
 You can commit code with 2 really simple commands in the terminal:
 
@@ -23,15 +24,8 @@ You can commit code with 2 really simple commands in the terminal:
 git commit -m "Message describing the commit"`}
 </CodeDisplay>
 
-Committing code essentially saves your codebase at a certain point in time. So when you're happy with your code, you create a commit and then if you want to get back to that code, all you have to do is enter:
-
-<CodeDisplay language="bash">
-{`git reset --hard`}
-</CodeDisplay>
-
-This instantly drops all the code that you've generated but haven't yet committed.
-
-Honestly, this command is going to be your best friend. So I'm going to repeat it.
+## 2. Resetting Code
+Resetting your code instantly drops all the code that you've written or generated but haven't yet committed. This command is going to be your best friend.
 
 <CodeDisplay language="bash">
 {`git reset --hard`}
@@ -42,7 +36,9 @@ You might not believe me just yet, but you will soon. Here's why:
 - Agents are prone to getting into error loops - when this happens, it makes it difficult to get back because as more wonky code is generated, it becomes part of the prompt. A lot of the time, from these loops you'll have a much better idea of what's going on, so resetting and giving a more detailed prompt will do the trick much faster than trying to prompt your way backwards
 - You can experiment risk-free. You think a transition will look good, you prompt to add a transition, it's not great, you test it out a bit more, you've updated 3 files now trying to get this working and you finally get it working but it's not as good as you thought - `git reset --hard`, no need to backtrack
 
-As you use it, the use cases will become very clear very quickly. It also helps you think through developing a feature in chunks of work. You should think through these chunks and make commits for each.
+## Using Git
+
+As you use git in your development workflow, the use cases will become very clear very quickly. Another benefit is that this process also helps you think through developing a feature in chunks of work. You should think through these chunks and make commits for each.
 
 Here's a real-world example - you're building a TODO list app and you want users to be able to:
 

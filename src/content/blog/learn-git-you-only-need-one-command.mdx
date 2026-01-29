@@ -10,6 +10,7 @@ draft: false
 import CodeDisplay from '../../components/CodeDisplay.astro';
 import Callout from '../../components/Callout.astro';
 import Technicallity from '../../components/Technicallity.astro';
+import Table from '../../components/Table.astro';
 
 If you aren't using git, stop developing and invest an hour in learning ittoday. I guarantee you'll see a full ROI within a week.
 
@@ -121,6 +122,39 @@ Get into the habit of committing code **early** and **often**.
 
 As you get further into your code it becomes more and more important as the codebase gets bigger and the generated code gets more unstable and unreliable.
 
+## My Commits For Callout Component
+If you see the 'Callout' component in this article. You can see it as the 'Prompt' box and the 'Takeaway' box.
+
+I created them at different times, so they were separate components, so here are my commits to bring them into one single component and into this article.
+
+<Table>
+<thead>
+<tr>
+<th>Time</th>
+<th>Message</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>15:40</td>
+<td>Create Callout component</td>
+</tr>
+<tr>
+<td>15:41</td>
+<td>Convert Prompt and Takeaway components to Callout component and delete components</td>
+</tr>
+<tr>
+<td>15:43</td>
+<td>Add Next Steps as callout type</td>
+</tr>
+</tbody>
+</Table>
+
+So this is the process, and might be a bit overkill for the article but every time I commited, it took about 5 seconds and it meant I could easily revert to a previous commit if I needed to.
+
 <Callout type="nextsteps">
-When you've got that down, you can take a look at branches, which really aren't that much more complicated. I'll touch on this in a later article.
+- Branching, using branches and merging 
+- Using commits to think thorugh a feature
+
+Articles to come!
 </Callout>

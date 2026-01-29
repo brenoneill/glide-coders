@@ -1,0 +1,94 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<div class={`table-wrapper not-prose my-6 ${className}`}>
+  <div class="table-container overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
+    <table class="table-content w-full">
+      <slot />
+    </table>
+  </div>
+</div>
+
+<style>
+  .table-wrapper {
+    width: 100%;
+  }
+  
+  .table-content {
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+  
+  .table-content :global(thead) {
+    background-color: #f9fafb;
+  }
+  
+  .dark .table-content :global(thead) {
+    background-color: #1f2937;
+  }
+  
+  .table-content :global(th) {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: #374151;
+    border-bottom: 2px solid #e5e7eb;
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .dark .table-content :global(th) {
+    color: #d1d5db;
+    border-bottom-color: #374151;
+  }
+  
+  .table-content :global(tbody tr) {
+    border-bottom: 1px solid #e5e7eb;
+    transition: background-color 0.15s ease;
+  }
+  
+  .dark .table-content :global(tbody tr) {
+    border-bottom-color: #374151;
+  }
+  
+  .table-content :global(tbody tr:hover) {
+    background-color: #f9fafb;
+  }
+  
+  .dark .table-content :global(tbody tr:hover) {
+    background-color: #1f2937;
+  }
+  
+  .table-content :global(tbody tr:last-child) {
+    border-bottom: none;
+  }
+  
+  .table-content :global(td) {
+    padding: 0.75rem 1rem;
+    color: #374151;
+  }
+  
+  .dark .table-content :global(td) {
+    color: #d1d5db;
+  }
+  
+  .table-content :global(code) {
+    background-color: rgba(107, 114, 128, 0.1);
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-size: 0.8125rem;
+    color: #4b5563;
+    font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  }
+  
+  .dark .table-content :global(code) {
+    background-color: rgba(107, 114, 128, 0.2);
+    color: #9ca3af;
+  }
+</style>

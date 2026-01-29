@@ -1,22 +1,24 @@
-# Glide Coders
+# Glide Coding
 
-Standalone tips from a professional developer to help vibecoders minimize dev friction.
+Standalone tips from a professional developer to help you practice glidecoding—applying simple but effective coding techniques to minimize friction when coding with AI assistants.
 
 ## About
 
-Hi, I'm Brendan O'Neill. Glide Coders provides standalone tips from a professional developer to help vibecoders minimize dev friction. Each resource is self-contained and actionable, designed to eliminate friction when starting new projects so you can focus on building instead of configuring.
+Glide Coding provides standalone tips from a professional developer to help you practice **glidecoding**—applying simple but effective coding techniques to minimize friction when coding with AI assistants.
 
-## What is Vibecoding?
+## What is Glidecoding?
 
-Vibecoding is about finding your flow state—that sweet spot where you're fully engaged, productive, and in the zone. It's coding with intention, clarity, and momentum. But too often, starting a new project means wrestling with setup, configuration, and boilerplate instead of diving into the actual work.
+**Glidecoding:** The practice of applying *simple but effective* coding techniques to minimize friction when coding with AI assistants.
+
+Glidecoding is about finding your flow state when working with AI coding assistants—that sweet spot where you're fully engaged, productive, and in the zone. It's coding with intention, clarity, and momentum. But too often, working with AI assistants means wrestling with prompts, context management, and code quality instead of diving into the actual work. Good foundations with solid design patterns make glidecoding easier and enable longer, more effective work sessions.
 
 ## The Mission
 
-We believe the best code gets written when developers can glide smoothly from idea to implementation. Good foundations with solid design patterns make vibecoding easier and enable longer, more effective work. Glide Coders provides standalone tips and resources from a professional developer—each one self-contained and actionable—to help vibecoders build these foundations, eliminate friction at the start of every project, and maintain momentum through proper project scaffolding, configuration, design patterns, and workflow optimization.
+We believe the best code gets written when developers can glide smoothly from idea to implementation with AI assistants. Glide Coding provides standalone tips and resources from a professional developer—each one self-contained and actionable—to help you practice glidecoding, build solid foundations, eliminate friction when coding with AI, and maintain momentum through proper techniques, design patterns, and workflow optimization.
 
 ## What You'll Find Here
 
-Standalone tips and practical resources from a professional developer: setup guides, configuration templates, design patterns, workflow tips, and strategies for building solid foundations. Each resource is designed to be consumed independently and help you establish foundations that make vibecoding easier, enabling longer, more effective work sessions and helping you stay in the flow.
+Standalone tips and practical resources from a professional developer: techniques for working effectively with AI assistants, setup guides, configuration templates, design patterns, workflow tips, and strategies for building solid foundations. Each resource is designed to be consumed independently and help you establish practices that make glidecoding easier, enabling longer, more effective work sessions when coding with AI.
 
 ## Tech Stack
 
@@ -29,7 +31,7 @@ This site is built with:
 
 ## Get In Touch
 
-Have tips for eliminating friction? Want to share your own vibecoding strategies? I'd love to hear from you.
+Have tips for eliminating friction? Want to share your own glidecoding techniques? I'd love to hear from you.
 
 📧 [bren@nodaysoff.ie](mailto:bren@nodaysoff.ie)
 
